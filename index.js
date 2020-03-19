@@ -86,6 +86,7 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                         .style("opacity", 0);
                     // return tooltip.style("opacity", 0);	
                 });
-            // console.log(worldRecords);
+            // console.log(ordered.slice(-1,)[0]);
+            return ordered.slice(-1,)[0];
         });
     }

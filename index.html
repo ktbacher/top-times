@@ -67,10 +67,11 @@
         <div class="yearSliderContainer">
             <div>1960</div>
             <div>
-                <input type="range" min="0" max="100" value="100" class="sliderYear" id="yearRange">
+                <input type="range" min="0" max="100" value="0" class="sliderYear" id="yearRange">
             </div>
             <div>2017</div>
         </div>
+        <div id="output"></div>
 
     </div>
 
@@ -113,10 +114,6 @@
         }
 
         y.addEventListener('input', function () {
-            // currEvent = distances[i.value];
-            // console.log(y.value/100);
-            // console.log(new Date(0));
-            // console.log(new Date("1960-1-1").getTime());
             currCuttoff = new Date(new Date("1960-1-1").getTime()+new Date((new Date("2018-1-1").getTime()-new Date("1960-1-1").getTime())*y.value/100).getTime());
             
             makeChart(currEvent, currGender, currCuttoff);
