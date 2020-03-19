@@ -1,1 +1,136 @@
-<h1> Hello World </h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="index.js"></script> 
+    
+</head>
+<body>
+    <h1 class="title"> Fastest Times Ever </h1>
+
+    <div class="slidecontainer">
+        <p>Select a distance:</p>
+        <input type="range" min="0" max="7" class="slider" id="myRange">
+    </div>
+    <div class="radiocontainer">
+        <div>Please select a gender:</div>
+        <form name="radioForm">
+            <input type="radio" id="Men" name="gender" value="Men" checked>
+            <label for="male">Men</label>
+            <input type="radio" id="Women" name="gender" value="Women">
+            <label for="female">Women</label>
+        </form>
+    </div>
+
+    <h2>1000 Fastest Marathon Times</h2>
+    <div id="dataviz"></div>
+
+
+    <script>
+
+        let i = document.querySelector('input');
+        let t = document.querySelector('h2');
+
+        var distances = ['100 m', '200 m', '400 m', '800 m', '1 mile', '5000 m', '10,000 m', 'Marathon'];
+
+        // console.log(i.value);
+
+        var currEvent = distances[i.value];
+        var currGender = "Men";
+        t.innerHTML = "1000 Fastest " +currEvent+" Times";
+
+        i.addEventListener('input', function () {
+            currEvent = distances[i.value];
+            t.innerHTML = "1000 Fastest " +currEvent+" Times";
+            makeChart(currEvent, currGender);
+        }, false);
+
+        var rad = document.radioForm.gender;
+        var prev = null;
+        for (var j = 0; j < rad.length; j++) {
+            rad[j].addEventListener('change', function() {
+                // (prev) ? console.log(prev.value): null;
+                if (this !== prev) {
+                    prev = this;
+                }
+                // console.log(this.value)
+                currGender = this.value;
+                makeChart(currEvent, currGender);
+            });
+        }
+
+
+
+        var margin = ({top: 10, right: 10, bottom: 20, left: 20}),
+            width = 1000,
+            height = 400;
+        var svg = d3.select("#dataviz")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+        // var xMargin = x.copy().range([margin.left, width - margin.right]);
+        // var yMargin = y.copy().range([height - margin.bottom, margin.top]);
+
+        // Define the div for the tooltip
+        var tooltip = d3.select("body").append("div")	
+            .attr("class", "tooltip")				
+            .style("opacity", 0);
+        
+        makeChart(distances[i.value], 'Women');
+
+
+
+
+            // set the dimensions and margins of the graph
+        // var margin = {top: 10, right: 30, bottom: 30, left: 60},
+        //     width = 460 - margin.left - margin.right,
+        //     height = 400 - margin.top - margin.bottom;
+        
+        // append the svg object to the body of the page
+        // var svg = d3.select("#my_dataviz")
+        // .append("svg")
+        //     .attr("width", width + margin.left + margin.right)
+        //     .attr("height", height + margin.top + margin.bottom)
+        // .append("g")
+        //     .attr("transform",
+        //         "translate(" + margin.left + "," + margin.top + ")");
+        
+        // //Read the data
+        // d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
+        //     // Add X axis
+        //     var x = d3.scaleLinear()
+        //         .domain([0, 4000])
+        //         .range([ 0, width ]);
+        //     svg.append("g")
+        //         .attr("transform", "translate(0," + height + ")")
+        //         .call(d3.axisBottom(x));
+            
+        //     // Add Y axis
+        //     var y = d3.scaleLinear()
+        //         .domain([0, 500000])
+        //         .range([ height, 0]);
+        //     svg.append("g")
+        //         .call(d3.axisLeft(y));
+            
+        //     // Add dots
+        //     svg.append('g')
+        //         .selectAll("dot")
+        //         .data(data)
+        //         .enter()
+        //         .append("circle")
+        //         .attr("cx", function (d) { return x(d.GrLivArea); } )
+        //         .attr("cy", function (d) { return y(d.SalePrice); } )
+        //         .attr("r", 1.5)
+        //         .style("fill", "#69b3a2")
+            
+        // })
+    </script>
+</body>
+</html>
+
+
