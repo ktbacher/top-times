@@ -98,12 +98,13 @@
       flex-direction: row;
       /* border: 1px solid black; */
       justify-content: space-around;
+      margin-left: 15px;
 
   }
   .sliderYear {
       margin-left: 10px;
       margin-right: 10px;
-      width: 980px;
+      width: 1000px;
   }
     div.tooltip {	
         position: absolute;			

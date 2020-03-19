@@ -65,7 +65,7 @@
         <div id="dataviz"></div>
 
         <div class="yearSliderContainer">
-            <div>1950</div>
+            <div>1960</div>
             <div>
                 <input type="range" min="0" max="100" value="100" class="sliderYear" id="yearRange">
             </div>
@@ -77,8 +77,11 @@
 
     <script>
 
-        let i = document.querySelector('input');
+        let i = document.querySelector('#myRange');
         let t = document.querySelector('h2');
+        let y = document.querySelector('#yearRange')
+
+        // console.log(y.value);
 
         var distances = ['100 m', '200 m', '400 m', '800 m', '1500 m', '5000 m', '10,000 m', 'Half marathon', 'Marathon'];
 
@@ -86,12 +89,13 @@
 
         var currEvent = distances[i.value];
         var currGender = "Men";
+        var currCuttoff = new Date(new Date("1960-1-1").getTime()+new Date((new Date("2018-1-1").getTime()-new Date("1960-1-1").getTime())*y.value/100).getTime());
         t.innerHTML = "1000 Fastest " +currEvent+" Times";
 
         i.addEventListener('input', function () {
             currEvent = distances[i.value];
             t.innerHTML = "1000 Fastest " +currEvent+" Times";
-            makeChart(currEvent, currGender);
+            makeChart(currEvent, currGender, currCuttoff);
         }, false);
 
         var rad = document.radioForm.gender;
@@ -104,15 +108,23 @@
                 }
                 // console.log(this.value)
                 currGender = this.value;
-                makeChart(currEvent, currGender);
+                makeChart(currEvent, currGender, currCuttoff);
             });
         }
 
-
+        y.addEventListener('input', function () {
+            // currEvent = distances[i.value];
+            // console.log(y.value/100);
+            // console.log(new Date(0));
+            // console.log(new Date("1960-1-1").getTime());
+            currCuttoff = new Date(new Date("1960-1-1").getTime()+new Date((new Date("2018-1-1").getTime()-new Date("1960-1-1").getTime())*y.value/100).getTime());
+            
+            makeChart(currEvent, currGender, currCuttoff);
+        }, false);
 
         var margin = ({top: 10, right: 10, bottom: 20, left: 20}),
             width = 1000,
-            height = 400;
+            height = 350;
         var svg = d3.select("#dataviz")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -128,7 +140,7 @@
             .attr("class", "tooltip")				
             .style("opacity", 0);
         
-        makeChart(distances[i.value], 'Women');
+        makeChart(currEvent, currGender, currCuttoff);
 
 
 

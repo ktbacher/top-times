@@ -10,9 +10,9 @@
 //     t.innerHTML = i.value;
 //   }, false);
 
-function makeChart(event, gender) {
+function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
     d3.csv("https://gist.githubusercontent.com/ktbacher/0c7ef46ff58ec4cc47661fa73ccdb4f3/raw/e8facb2fd6cc4e6a84cdbe03f9f4fa4848a64491/top1000times.csv", function(data) {
-            var ordered = data.filter(d=> d.Event === event && d.Gender === gender).sort((a,b) => a.Date > b.Date);
+            var ordered = data.filter(d=> d.Event === event && d.Gender === gender && new Date(d.Date) < lastDate).sort((a,b) => a.Date > b.Date);
             var worldRecords = [];
             ordered.forEach(t => {
                 if (worldRecords.length == 0) {
@@ -27,7 +27,7 @@ function makeChart(event, gender) {
 
             // Add X axis
             var x = d3.scaleTime()
-                .domain([new Date("1950-1-1"), new Date("2018-1-1")])
+                .domain([new Date("1960-1-1"), new Date("2018-1-1")])
                 .range([ 0, width ]);
             var xMargin = x.copy().range([margin.left, width - margin.right]);
             svg.append("g")
