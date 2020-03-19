@@ -1,17 +1,74 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
 .slidecontainer {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
   }
+.rectcontainer {
+    /* width: 99%; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 12px;
+    margin-right: 25px;
+}
+.rect {
+    width: 2px;
+    height: 10px;
+    background-color: black;
+    /* border: 1px solid black; */
+    /* margin: 2px; */
+}
+.dLabels {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
   
+.label {
+    /* background-color: teal; */
+    width: 60px;
+    /* border: 1px solid black; */
+}
+.radiocontainer {
+    margin-top: 2em;
+}
   .slider {
     -webkit-appearance: none;
-    width: 95%;
+    width: 99%;
     height: 25px;
     background:#e76060; 
     /* #d3d3d3; */
     outline: none;
+    border: 1px solid white;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    /* padding: 0px; */
+    margin-top: 5px;
+  }
+  .track {
+    width: 99%;
+    height: 25px;
+    background-color:#e76060; 
+    /* #d3d3d3; */
+    outline: none;
+    border: 1px solid white;
+    outline: none;
+    opacity: 0.7;
+    /* -webkit-transition: .2s; */
+    /* transition: opacity .2s; */
+    /* padding: 0px; */
+    /* margin-top: 5px; */
   }
   
   .slider:hover {
@@ -34,6 +91,20 @@
     cursor: pointer;
   }
 
+
+  .yearSliderContainer {
+      /* width: 30%; */
+      display: flex;
+      flex-direction: row;
+      /* border: 1px solid black; */
+      justify-content: space-around;
+
+  }
+  .sliderYear {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 980px;
+  }
     div.tooltip {	
         position: absolute;			
         text-align: center;			

@@ -8,24 +8,71 @@
     
 </head>
 <body>
-    <h1 class="title"> Fastest Times Ever </h1>
+    <div class="container">
+        <h1 class="title"> Fastest Times Ever </h1>
 
-    <div class="slidecontainer">
         <p>Select a distance:</p>
-        <input type="range" min="0" max="8" class="slider" id="myRange">
-    </div>
-    <div class="radiocontainer">
-        <div>Please select a gender:</div>
-        <form name="radioForm">
-            <input type="radio" id="Men" name="gender" value="Men" checked>
-            <label for="male">Men</label>
-            <input type="radio" id="Women" name="gender" value="Women">
-            <label for="female">Women</label>
-        </form>
-    </div>
+        <div class="slidecontainer">
+            <!-- <div class="rectcontainer">
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+            </div> -->
+            <div class="track"></div>
+            <div>
+                <input type="range" min="0" max="6" class="slider" id="myRange">
+            </div>
+            <div class="track"></div>
+            <div class="rectcontainer">
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <div class="rect"></div>
+                <!-- <div class="rect"></div>
+                <div class="rect"></div> -->
+            </div>
+            <div class="dLabels">
+                <div class='label'>100m</div>
+                <div class='label'>200m</div>
+                <div class='label'>400m</div>
+                <div class='label'>800m</div>
+                <div class='label'>1500m</div>
+                <div class='label'>5000m</div>
+                <div class='label'>10000m</div>
+                <!-- <div class='label'>Half Marathon</div>
+                <div class='label'>Marathon</div> -->
+            </div>
+        </div>
+        <br>
+        <div class="radiocontainer">
+            <div>Select a gender:</div>
+            <form name="radioForm">
+                <input type="radio" id="Men" name="gender" value="Men" checked>
+                <label for="male">Men</label>
+                <input type="radio" id="Women" name="gender" value="Women">
+                <label for="female">Women</label>
+            </form>
+        </div>
 
-    <h2>1000 Fastest Marathon Times</h2>
-    <div id="dataviz"></div>
+        <h2>1000 Fastest Marathon Times</h2>
+        <div id="dataviz"></div>
+
+        <div class="yearSliderContainer">
+            <div>1950</div>
+            <div>
+                <input type="range" min="0" max="100" value="100" class="sliderYear" id="yearRange">
+            </div>
+            <div>2017</div>
+        </div>
+
+    </div>
 
 
     <script>
@@ -130,6 +177,7 @@
             
         // })
     </script>
+    
 </body>
 </html>
 
