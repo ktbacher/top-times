@@ -23,6 +23,8 @@ function makeChart(event, gender) {
                 }
             })
 
+            svg.selectAll("g").remove();
+
             // Add X axis
             var x = d3.scaleTime()
                 .domain([new Date("1950-1-1"), new Date("2018-1-1")])
@@ -84,6 +86,6 @@ function makeChart(event, gender) {
                         .style("opacity", 0);
                     // return tooltip.style("opacity", 0);	
                 });
-            console.log(worldRecords);
+            // console.log(worldRecords);
         });
     }
