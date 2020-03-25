@@ -104,13 +104,13 @@
   .sliderYear {
       margin-left: 10px;
       margin-right: 10px;
-      width: 1000px;
+      width: 500px;
   }
     div.tooltip {	
         position: absolute;			
         text-align: center;			
         width: 100px;					
-        height: 28px;					
+        height: 40px;					
         padding: 2px;				
         font: 12px sans-serif;		
         background: lightsteelblue;	
@@ -118,3 +118,22 @@
         border-radius: 8px;			
         pointer-events: none;			
     }
+
+.charts {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#map {
+    position: relative; 
+    width: 50%; 
+    max-height: 350px;
+}
+
+/* #dataviz {
+    position: relative; 
+    width: 50%; 
+    max-height: 450px;
+} */
