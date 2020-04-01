@@ -31,12 +31,12 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
             // var x = d3.scaleTime()
             var x = d3.time.scale()
                 .domain([new Date("1960-1-1"), new Date("2018-1-1")])
-                .range([ 0, width ]);
-            var xMargin = x.copy().range([margin.left, width - margin.right]);
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                // .call(d3.axisBottom(x));
-                .call(d3.svg.axis(x));
+                .range([ margin.left, width ]);
+            // var xMargin = x.copy().range([margin.left, width - margin.right]);
+            // svg.append("g")
+            //     .attr("transform", "translate(0," + height + ")")
+            //     // .call(d3.axisBottom(x));
+            //     .call(d3.svg.axis(x));
             
             // Add Y axis
             var orderT = data.filter(d=> d.Event === event && d.Gender === gender).sort((a,b) => a.Time > b.Time);
@@ -47,10 +47,26 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                 .domain([minT.slice(0,2)*60*60+ minT.slice(3,5)*60+minT.slice(6,)*1, maxT.slice(0,2)*60*60+ maxT.slice(3,5)*60+maxT.slice(6,)*1])
                 .range([ height, 0]);
             yMargin = y.copy().range([height - margin.bottom, margin.top]);
+            // svg.append("g")
+            //     .attr("transform", "translate("+margin.left+",0)")
+            //     // .call(d3.axisLeft(y));
+            //     .call(d3.svg.axis(y));
+            var xAxis = d3.svg.axis()
+                .scale(x);
+                // .tickSize(-height);
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                // .ticks(4)
+                .orient("left");
             svg.append("g")
-                .attr("transform", "translate("+margin.left+",0)")
-                // .call(d3.axisLeft(y));
-                .call(d3.svg.axis(y));
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+          
+            svg.append("g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + margin.left + ",0)")
+                .call(yAxis);
 
             // Add dots
             svg.append('g')
@@ -238,7 +254,7 @@ function updateMap(event, gender, lastDate=new Date("2018-1-1")) {
         console.log(counts);
         map.bubbles(counts, {
             popupTemplate: function(geo, data) {
-                return "<div class='hoverinfo'>"+data.Country+" has "+Math.floor(data.radius*10)+" marks in the top 1000.</div>";
+                return "<div class='hoverinfo'>"+data.Country+" has "+Math.floor(data.radius*10)+" top marks.</div>";
             }
         });
         console.log("new map?")

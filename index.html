@@ -61,15 +61,23 @@
         <br>
         <div class="radiocontainer">
             <div>Select a gender:</div>
-            <form name="radioForm">
-                <input type="radio" id="Men" name="gender" value="Men" checked>
+            <form name="radioForm" class='switch-field'>
+                <!-- <input type="radio" id="Men" name="gender" value="Men" checked>
                 <label for="male">Men</label>
                 <input type="radio" id="Women" name="gender" value="Women">
-                <label for="female">Women</label>
+                <label for="female">Women</label> -->
+                <input type="radio" id="Men" name="gender" value="Men" checked/>
+                <label for="Men">Men</label>
+                <input type="radio" id="Women" name="gender" value="Women" />
+                <label for="Women">Women</label>
             </form>
+            <!-- <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label> -->
         </div>
 
-        <h2>1000 Fastest Marathon Times</h2>
+        <h2>1000 All-Time Fastest 800m Times in the World</h2>
         <div class='charts'>
             <div id="map"></div>
             <div>
@@ -85,7 +93,10 @@
             </div>
             
         </div>
-        
+        <div>
+            <br>
+            <p style='font-size: 8px;'>Runner by b farias from the Noun Project</p>
+        </div>
     </div>
         
 
@@ -111,7 +122,7 @@
 
         i.addEventListener('input', function () {
             currEvent = distances[i.value];
-            t.innerHTML = "1000 Fastest " +currEvent+" Times";
+            t.innerHTML = "1000 All-Time Fastest " +currEvent+" Times in the World";
             makeChart(currEvent, currGender, currCuttoff);
             updateMap(currEvent, currGender, currCuttoff);
         }, false);
@@ -135,6 +146,7 @@
             currCuttoff = new Date(new Date("1960-1-1").getTime()+new Date((new Date("2018-1-1").getTime()-new Date("1960-1-1").getTime())*y.value/100).getTime());
             
             makeChart(currEvent, currGender, currCuttoff);
+            updateMap(currEvent, currGender, currCuttoff);
         }, false);
 
         var margin = ({top: 10, right: 10, bottom: 20, left: 20}),
