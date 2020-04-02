@@ -1,3 +1,6 @@
+.title {
+    font: impact;
+}
 svg {
     font: 10px sans-serif;
   }
@@ -67,6 +70,8 @@ svg {
 }
 .radiocontainer {
     margin-top: 2em;
+    display: flex;
+    flex-direction: row;
 }
   .slider {
     -webkit-appearance: none;
@@ -123,7 +128,7 @@ svg {
 
 
   .yearSliderContainer {
-      /* width: 30%; */
+      width: 100%;
       display: flex;
       flex-direction: row;
       /* border: 1px solid black; */
@@ -131,11 +136,45 @@ svg {
       margin-left: 15px;
 
   }
+  .yearSlider {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 1em;
+      padding-left: 4%;
+      padding-right: 2.5%;
+  }
   .sliderYear {
       margin-left: 10px;
       margin-right: 10px;
-      width: 500px;
+      /* width: 600px; */
+      width:100%;
+      /* padding: 5px; */
   }
+
+  .bubble {
+    background: #e76060;
+    color: white;
+    padding: 4px 12px;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    transform: translate(-25px, 15px);
+    /* transform: translateY(+15px); */
+  }
+  /* .bubble::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: red;
+    top: -8px;
+    left: 50%;
+    transform: translate(50%,5px);
+  } */
+
     div.tooltip {	
         position: absolute;			
         text-align: center;			
@@ -168,10 +207,14 @@ svg {
     max-height: 450px;
 } */
 
+.radio-label {
+    margin-top:5px;
+}
 .switch-field {
 	display: flex;
 	margin-bottom: 36px;
-	overflow: hidden;
+    overflow: hidden;
+    margin-left: 20px;
 }
 
 .switch-field input {
@@ -210,4 +253,24 @@ svg {
 
 .switch-field label:last-of-type {
 	border-radius: 0 4px 4px 0;
+}
+
+.end-notes {
+    background-color: #d3d3d3;
+    padding: 0 20px 10px 20px;
+    border-radius: 10px;
+    margin: 2em 1em 1em 1em;
+}
+
+.graph {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sources {
+    font-size: 8px; 
+    color:  #d3d3d3;
 }
