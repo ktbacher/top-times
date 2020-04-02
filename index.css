@@ -1,8 +1,13 @@
+* {
+    font-family: Courier
+}
+
 .title {
-    font: impact;
+    font-family: Courier
 }
 svg {
-    font: 10px sans-serif;
+    /* font: 10px sans-serif; */
+    font-size: 10px;
   }
   .axis {
     shape-rendering: crispEdges;
@@ -155,13 +160,14 @@ svg {
 
   .bubble {
     background: #e76060;
+    font-size: 12px;
     color: white;
     padding: 4px 12px;
     position: absolute;
     border-radius: 4px;
     left: 50%;
     /* transform: translateX(-50%); */
-    transform: translate(-25px, 15px);
+    transform: translate(-25px, 18px);
     /* transform: translateY(+15px); */
   }
   /* .bubble::after {
@@ -181,7 +187,8 @@ svg {
         width: 100px;					
         height: 40px;					
         padding: 2px;				
-        font: 12px sans-serif;		
+        /* font: 12px sans-serif;		 */
+        font-size:12px;
         background: lightsteelblue;	
         border: 0px;		
         border-radius: 8px;			
@@ -197,7 +204,7 @@ svg {
 
 #map {
     position: relative; 
-    width: 50%; 
+    width: 45%; 
     max-height: 350px;
 }
 
@@ -272,5 +279,5 @@ svg {
 
 .sources {
     font-size: 8px; 
-    color:  #d3d3d3;
+    color:  grey;
 }

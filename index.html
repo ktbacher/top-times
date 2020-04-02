@@ -87,32 +87,34 @@
                 <div class="yearSliderContainer">
                     <!-- <div style='font-size: 12px;'>1960</div> -->
                     <div class="yearSlider">
-                        <input type="range" min="0" max="100" value="0" class="sliderYear" id="yearRange" name="yearRange">
+                        <input type="range" min="0" max="100" value="50" class="sliderYear" id="yearRange" name="yearRange">
                         <output class="bubble"></output>
                         <!-- <output for="#yearRange" onforminput='value =new Date(new Date("1960-1-1").getTime()+new Date((new Date("2018-1-1").getTime()-new Date("1960-1-1").getTime())*yearRange.valueAsNumber/100).getTime());'></output> -->
                     </div>
                     <!-- <div style='font-size: 12px;'>2017</div> -->
                 </div>
-                <div id="output" style="padding-left: 40px;"></div>
+                <!-- <div id="output" style="padding-left: 40px;"></div> -->
             </div>
             
         </div>
 
         <div style='font-size: 10px;'><br>Note: The red dots in right chart indicate the fastest times to date but not all of those marks are radified world records.</div>
-        <!-- <div class='end-notes'>
-            <h4>Interesting places for exploration:</h4>
+        <div class='end-notes'>
+            <h4>Points of Interest:</h4>
             <ul>
-                <li>Which distance has the oldest standing record?</li>
                 <li>Which countries are more dominant in shorter vs longer events?</li>
-                <li>Are the dominant countries the same for men and women across distances?</li>
+                <li>Are the dominant countries at a particular distance the same for men and women?</li>
+                <!-- <li>Which distance has the oldest standing record?</li> -->
+                <li>The '70s and '80s were noted as a time of rampant and systematic drug use:<br>Can you find evidence of that in the chart?<br>Can you guess which distance(s) and/or gender benefit most from drug use?<br>Any country(ies) you might suspect of systematic doping?</li>
             </ul>
-        </div> -->
+        </div>
         <div>
             <br>
             <p class='sources'>Runner by b farias from the Noun Project</p>
             
         </div>
-        <a class='sources' href="https://www.kaggle.com/jguerreiro/running">Data Source</a>
+        <a class='sources' href="https://www.kaggle.com/jguerreiro/running">Running Data Source</a>
+        <a class='sources' href="https://worldmap.harvard.edu/data/geonode:country_centroids_az8">Geography Data Source</a>
     </div>
         
 
@@ -124,14 +126,14 @@
         let i = document.querySelector('#myRange');
         let t = document.querySelector('h2');
         let y = document.querySelector('#yearRange');
-        let o = document.querySelector('#output');
+        // let o = document.querySelector('#output');
         let bubble = document.querySelector(".bubble");
 
         setBubble(y,bubble);
 
-        let screenWidth = screen.width;
+        let screenWidth = window.innerWidth;
 
-        o.innerHTML = "Use slider to explore progression over time"
+        // o.innerHTML = "Use slider to explore progression over time"
         // console.log(y.value);
 
         var distances = ['100 m', '200 m', '400 m', '800 m', '1500 m', '5000 m', '10,000 m', 'Half marathon', 'Marathon'];
@@ -174,9 +176,10 @@
             setBubble(y, bubble);
         }, false);
 
-        var margin = ({top: 10, right: 10, bottom: 20, left: 30}),
-            width = screenWidth/2,
+        var margin = ({top: 10, right: 30, bottom: 20, left: 30}),
+            width = screenWidth/2-20,
             height = 300;
+        // console.log("w here", width);
         var svg = d3.select("#dataviz")
         .append("svg")
             .attr("width", width + margin.left + margin.right)

@@ -27,12 +27,15 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                     worldRecords.push(t)
                 }
             })
-
+            // console.log("w", width);
+            // console.log("h", height);
             svg.selectAll("g").remove();
+            svg.selectAll("line").remove();
 
             var formatTime = d3.time.format("%M:%S.%L"),
-                formatMinutes = function(d) {console.log("old", new Date(2000, 0, 1, 0, 0, d).getSeconds()); console.log("d",new Date(Math.floor(d*1000))); console.log("new",new Date(Math.floor(d*1000)).getSeconds());
-                    return formatTime(new Date(d*1000));};
+                formatMinutes = function(d) {
+                    // console.log("old", new Date(2000, 0, 1, 0, 0, d).getSeconds()); console.log("d",new Date(Math.floor(d*1000))); console.log("new",new Date(Math.floor(d*1000)).getSeconds());
+                    return formatTime(new Date(d*1000)).slice(0,7);};
                     // return formatTime(new Date(2000, 0, 1, 0, 0, d)); };
 
             // Add X axis
@@ -55,7 +58,7 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                 .scale(x);
             var yAxis = d3.svg.axis()
                 .scale(y)
-                .ticks(4)
+                // .ticks(5)
                 .orient("left")
                 .tickFormat(formatMinutes);
 
@@ -68,6 +71,37 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                 .attr("class", "y axis")
                 .attr("transform", "translate(" + margin.left + ",0)")
                 .call(yAxis);
+            
+            // svg.append("path")
+            //     .attr("class", "line")
+            //     .style("stroke-dasharray", ("3, 3"))  // <== This line here!!
+            //     .attr("d", worldRecords.slice(-1,)[0]);
+            d = worldRecords.slice(-1,);
+            lines = [{x1: margin.left, x2: width, y1: d[0].Time.slice(0,2)*60*60+ d[0].Time.slice(3,5)*60+d[0].Time.slice(6,)*1, y2: d[0].Time.slice(0,2)*60*60+ d[0].Time.slice(3,5)*60+d[0].Time.slice(6,)*1}];//horizontal
+        
+            svg.selectAll(".grid-line")
+                .data(lines).enter()
+                .append("line")
+                .attr("x1", function(d){ return d.x1; })
+                .attr("x2", function(d){ return d.x2; })
+                .attr("y1", function(d){ return y(d.y1); })
+                .attr("y2", function(d){ return y(d.y2); })
+                .style("stroke-dasharray", ("3, 3"))  // <== This line here!!
+                .style("stroke", "#000")
+
+            svg.append('g')
+                .selectAll("text")
+                .data(d)
+                .enter()
+                .append("text")
+                .attr('x', margin.left)
+                .attr('y', d=> y(d.Time.slice(0,2)*60*60+ d.Time.slice(3,5)*60+d.Time.slice(6,)*1))
+                .attr('dx', 10)
+                .attr('dy', '-5px')
+                // .attr('fill', 'black')
+                .style('font-size', 'small')
+                .text(d => d.Time.slice(3,11))
+
 
             // Add dots
             svg.append('g')
@@ -87,7 +121,7 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                     tooltip.html(d.Name +"<br>"+ d.Time.slice(3,11)+"<br>"+d.Country)	
                         .style("left", (d3.event.pageX) + "px")		
                         .style("top", (d3.event.pageY - 28) + "px")
-                        .style("width", d.Name.length *7 +'px');	
+                        .style("width", d.Name.length *8 +'px');	
                     // tooltip.style("opacity", .9);
                     // tooltip.text(d.Name);
                     // return tooltip
@@ -117,7 +151,7 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                     tooltip.html(d.Name +"<br>"+ d.Time.slice(3,11)+"<br>"+d.Country)	
                         .style("left", (d3.event.pageX) + "px")		
                         .style("top", (d3.event.pageY - 28) + "px")
-                        .style("width", d.Name.length *7 +'px');	
+                        .style("width", d.Name.length *8 +'px');	
                     // tooltip.style("opacity", .9);
                     // tooltip.text(d.Name);
                     // return tooltip
@@ -130,18 +164,18 @@ function makeChart(event, gender, lastDate=new Date("2018-1-1")) {
                     // return tooltip.style("opacity", 0);	
                 });
             // console.log("here", worldRecords.slice(-1,)[0]);
-            updateText(worldRecords.slice(-1,)[0]);
+            // updateText(worldRecords.slice(-1,)[0]);
             return ordered.slice(-1,)[0];
         });
     }
 
-function updateText(data) {
-    if (data !== undefined) {
-        o.innerHTML = "Best time to date is " + data.Time.slice(3,11);
-    } else {
-        o.innerHTML = "Use slider to explore progression over time"
-    }
-}
+// function updateText(data) {
+//     if (data !== undefined) {
+//         o.innerHTML = "Best time to date is " + data.Time.slice(3,11);
+//     } else {
+//         o.innerHTML = "Use slider to explore progression over time"
+//     }
+// }
 
 function setBubble(range, bubble) {
     const val = range.value;
@@ -152,7 +186,8 @@ function setBubble(range, bubble) {
     bubble.innerHTML = year;
   
     // Sorta magic numbers based on size of the native UI thumb
-    bubble.style.left =  `calc(${50+newVal/2}% + (${8 - newVal * .4}px))`;
+    bubble.style.left =  `calc(${50+newVal/2}% + (${0 - newVal * .5}px))`;
+    // bubble.style.left =  `calc(${50+newVal/2}% + (${8 - newVal * 1}px))`;
   }
 
 function makeMap(event, gender, lastDate=new Date("2018-1-1")) {
