@@ -11,7 +11,7 @@ I created another range slider to allow users to limit the datapoints in the map
 Finally, I compiled a short list of observations I had made about the dataset and added some interesting questions to explore at the bottom.  These served both to give viewers a starting place for interacting with and exploring the visual and to provide some additional insight about the data.
 
 
-## Developemt Project
+## Development Process
 
 I don’t remember exactly how much time I spent on this since I stretched out the work over several weeks, but I would estimate somewhere on the order of 25-30 hours from what I can remember.   This time was split about half and half from before and after I received feedback as I made several significant changes based on my peers’ comments.
 
