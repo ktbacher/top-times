@@ -1,0 +1,18 @@
+# A4 Write Up
+
+## Design Decisions
+
+In track, we generally expect that over time, people will get faster and records will be broken.  Hence, the first thing I wanted to visualize with this dataset was the progression of time improvements in the various track-race distances.  To do this, I started with a scatter plot showing race times versus date, highlighting the points that were the fastest to date in the red.  I added a tooltip for this chart that allowed users to view the athlete, their time, and country of origin. I created a range slider at the top to allow users to pick out the various race distance to view, and designed the bar to look like a track with a runner as the slider icon to connect the visual appearance with its purpose (the further you move the runner along the slider, the longer the track distance shown in the charts).  
+
+As I further explored the dataset, I found it interesting to look at the athletes’ countries of origin as I noticed different trends across distances.  Thus, I decided to include a world map alongside my graph.  I found an additional dataset to get country geographical data that could be looked up via a 3 letter country code, which was what was provided in the running dataset.  In the map, I included bubbles proportional in size to the number of athletes from that country with top times in the selected distance and a tooltip to show the actual number.  I chose not to include a legend for the size encoding because I found that cluttered the visual.  Instead, I found it more interesting to look at the general differences and trends but provided users the option of getting actual numbers with the tooltip.
+
+I created another range slider to allow users to limit the datapoints in the map and graph to only marks that had been run up to a selected date.  Additionally, I added a horizontal line in the graph to show that fastest time to date, as I found this provided more information when scrolling through the years and allowed users to more directly see the fastest time and how it improves over time.  
+
+Finally, I compiled a short list of observations I had made about the dataset and added some interesting questions to explore at the bottom.  These served both to give viewers a starting place for interacting with and exploring the visual and to provide some additional insight about the data.
+
+
+## Developemt Project
+
+I don’t remember exactly how much time I spent on this since I stretched out the work over several weeks, but I would estimate somewhere on the order of 25-30 hours from what I can remember.   This time was split about half and half from before and after I received feedback as I made several significant changes based on my peers’ comments.
+
+I had never really worked with D3.js before so I found this learning curve to be the most time consuming part.  I found debugging difficult because I would often try to add components, but they wouldn’t appear but also wouldn’t throw any errors.  In particular, since my y axis was duration and not absolute time, I had a lot of trouble formatting the axis and points correctly and ended up having to jump through some weird hoops with my time format conversions.  Additionally, I had some issues with the different d3 versions as many of the online resources were out-of-date and only work with an older version.  Incidentally, I ended up switching to v3 because that was what was required for the map library I used.  While there were some differences from what we talked about in class, many of the online resources I had come across where actually v3, so it worked out okay.  
